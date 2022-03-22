@@ -1,0 +1,94 @@
+.shower{
+    /*background-color: black;*/
+    width: 500px;
+    margin: 0px auto;
+    border-style: solid;
+    background-color: black;
+}
+
+.entrada {
+    display:flex;
+    justify-content: space-between;
+    height:50px;
+    margin:5px;
+    text-align: right;
+    
+    
+}
+.entrada input{
+    width: 100%;
+    text-align: right;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    background-color: lightgray;
+    border-style: solid;
+    
+}
+.resultado {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+    margin:5px;
+    color:white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
+    text-align: right;
+}
+.resultado input {
+    width: 82%;
+    height: 100%;
+    border-style: solid;
+}
+.container{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    margin: 5px auto;
+    background-color: black;
+   
+    /*border-style: solid;*/
+    
+}
+
+
+.grid{
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    
+}
+.column, .number, .cero, .operator{
+    display: flex;
+    background-color: aquamarine;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+    flex:1;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+
+.cero {
+    flex:2;
+}
+.number .punto {
+    flex:1;
+}
+.igual {
+    flex:1;
+}

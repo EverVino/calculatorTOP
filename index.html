@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Ever's calculator</title>
+    <link rel = "stylesheet" href = "style.css">
+    
+  </head>
+
+  <body>
+        <h1>Calculator</h1>
+        <div class ="shower">
+            <div class = "entrada"> 
+                <input type = "text" id="operation" value = "0">
+            </div>
+
+            <div class = "resultado">
+                <label for = "operation">ANS</label>
+                <input type = "text" id ="result">
+            </div>
+        </div>
+        <div class = "container">
+            <div class ="grid">
+                <div class="row">
+                    <button class="column ac">AC</button>
+                    <button class="column sign">+/-</button>
+                    <button class="column module">%</button>
+                    <button class="operator">/</button>
+                </div>
+                <div class="row">
+                    <button class="number">7</button>
+                    <button class="number">8</button>
+                    <button class="number">9</button>
+                    <button class="operator">*</button>
+                </div>
+                <div class="row">
+                    <button class="number">4</button>
+                    <button class="number">5</button>
+                    <button class="number">6</button>
+                    <button class="operator">-</button>
+                </div>
+                <div class="row">
+                    <button class="number">1</button>
+                    <button class="number">2</button>
+                    <button class="number">3</button>
+                    <button class="operator">+</button>
+                </div>
+                <div class="row">
+                    <button class="number cero">0</button>
+                    <button class="number punto">.</button>
+                    <button class="column igual">=</button>
+                    
+                </div>
+        </div>
+
+      </div>
+
+<script>
+    const entrada = document.querySelector("#operation");
+    entrada.value=0;
+    
+
+    const resultado = document.querySelector("#result");
+    resultado.value="";
+    let ans=0;
+    let operator = "";
+    let newOp = false;
+
+    function introNum(e){
+        if (newOp){
+            entrada.value=e.target.textContent;
+            
+        }
+        
+        else {
+            if (entrada.value != "0") {
+                entrada.value+=e.target.textContent;
+            }
+            else {
+                entrada.value=e.target.textContent;
+            }
+        }
+        newOp=false;
+    }
+
+    function borrar(){
+        entrada.value="0";
+        ans=0;
+    }
+
+    function operate(operator, a, b){
+        if (operator=="+"){
+            return a+b;
+        }
+        if (operator=="-"){
+            return a-b;
+        }
+        if (operator=="/"){
+            return a/b;
+        }
+        if (operator=="*"){
+            return a*b;
+        }
+    }
+
+    function operar (e){
+
+        operator = e.target.textContent;
+        b = parseFloat(entrada.value);
+        console.log(ans)
+        console.log(b)
+        console.log(operator)
+        ans = operate(operator,ans,b)
+        entrada.value = ans;
+        resultado.value = ans.toString() + operator; 
+        newOp=true;
+        
+        /*if(newOp){
+            ans = parseFloat(entrada.value);
+            resultado.value = ans.toString() + operator;
+            
+        }
+        else {
+            b = parseFloat(e.target.textContent);
+            entrada.value = operate(operator,ans,b)
+            resultado.value = ans.toString() + operator;
+            newOp = true;
+        }*/
+    }
+
+    const numbers = document.querySelectorAll(".number")
+    numbers.forEach(boton => boton.addEventListener("click",introNum))
+
+    const ac = document.querySelector(".column.ac");
+    ac.addEventListener("click", borrar);
+
+    const OP = document.querySelectorAll(".operator");
+    OP.forEach(operator => operator.addEventListener("click", operar));
+
+
+    /*numbers.addEventListener("click",introNum);*/
+</script>     
+</body>
+
+<script>
+ 
+</script>
+</html>
