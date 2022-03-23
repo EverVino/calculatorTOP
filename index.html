@@ -62,19 +62,18 @@
     
 
     const resultado = document.querySelector("#result");
-    resultado.value="";
-    let ans=0;
-    let operator = "";
+    resultado.value = "";
+    let ans = 0;
+    let newOperator = "";
+    let oldOperator = "";
     let newOp = false;
 
     function introNum(e){
         if (newOp){
             entrada.value=e.target.textContent;
-            
         }
-        
         else {
-            if (entrada.value != "0") {
+            if (entrada.value != "0" || e.target.textContent == ".") {
                 entrada.value+=e.target.textContent;
             }
             else {
@@ -85,8 +84,9 @@
     }
 
     function borrar(){
-        entrada.value="0";
-        ans=0;
+        entrada.value = "0";
+        ans = 0;
+        resultado.value = "";
     }
 
     function operate(operator, a, b){
@@ -105,16 +105,20 @@
     }
 
     function operar (e){
-
-        operator = e.target.textContent;
-        b = parseFloat(entrada.value);
-        console.log(ans)
-        console.log(b)
-        console.log(operator)
-        ans = operate(operator,ans,b)
-        entrada.value = ans;
-        resultado.value = ans.toString() + operator; 
-        newOp=true;
+        //obtención del signo
+        newOperator = e.target.textContent;
+        if(ans == "0"){
+            ans = parseFloat(entrada.value);
+            oldOperator = newOperator;
+        }
+        else { 
+            b = parseFloat(entrada.value);
+            ans = operate(oldOperator, ans, b);
+            oldOperator = newOperator;
+            entrada.value = ans;
+        }
+        resultado.value = Number(ans.toFixed(7)).toString(); + oldOperator; 
+        newOp = true;
         
         /*if(newOp){
             ans = parseFloat(entrada.value);
@@ -138,6 +142,15 @@
     const OP = document.querySelectorAll(".operator");
     OP.forEach(operator => operator.addEventListener("click", operar));
 
+    const igual = document.querySelector(".column.igual");
+    igual.addEventListener("click", function(){
+        b = parseFloat(entrada.value);
+        ans = operate(oldOperator,ans,b);
+        entrada.value = "0";
+        resultado.value = Number(ans.toFixed(7)); 
+        newOp = false;
+        ans = "0";
+    });
 
     /*numbers.addEventListener("click",introNum);*/
 </script>     
